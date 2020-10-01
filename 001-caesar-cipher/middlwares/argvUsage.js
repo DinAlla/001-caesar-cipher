@@ -14,6 +14,10 @@ const argvUsage = function (argv) {
         // call action
         actionParser(argv, text);
       }
+      if (err) {
+        console.error(err);
+        process.exit(0);
+      }
     })
   }
 };

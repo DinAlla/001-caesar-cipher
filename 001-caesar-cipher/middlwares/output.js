@@ -29,7 +29,8 @@ const output = (argv, outputText) => {
         });
       }
     } catch(err) {
-      console.error(err)
+      console.error(err);
+      process.exit(1);
     }
   } else {
     console.log(outputText, 'outputText');

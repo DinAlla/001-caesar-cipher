@@ -11,7 +11,7 @@ class FilterBlastOutput extends Transform {
 
   _transform(chunk,encoding,callback) {
     if(chunk === '\u0003')
-      process.exit();
+      process.exit(1);
     let row = chunk.toString();
     let encodedText, decodedText;
     if ((this.argv['action'] || this.argv['a']) === ACTION_TYPES[0]) {

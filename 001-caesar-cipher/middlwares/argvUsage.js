@@ -12,18 +12,23 @@ const argvUsage = function (argv) {
     readInput(argv['i'] || argv['input'], successCallBack);
   } else {
     // default input from console
-    pipeline(
-      process.stdin,
-      new transform_stream(argv),
-      argv['o'] || argv['output'] ? fs.createWriteStream(argv['o'] || argv['output'], { flags: 'a' }) : process.stdout,
-      err => {
-        if(err) {
-          console.log("Pipeline failed: ");
-        } else {
-          console.log('Pipeline succeeded.')
-        }
-      }
-    )
+    try {
+      pipeline(
+          process.stdin,
+          new transform_stream(argv),
+          argv['o'] || argv['output'] ? fs.createWriteStream(argv['o'] || argv['output'], {flags: 'a'}) : process.stdout,
+          err => {
+            if (err) {
+              console.log("Pipeline failed: ");
+              process.exit(1);
+            } else {
+              console.log('Pipeline succeeded.')
+            }
+          }
+      )
+    } catch {
+      process.exit(1);
+    }
   }
 };
 

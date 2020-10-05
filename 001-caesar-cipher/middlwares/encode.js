@@ -1,4 +1,5 @@
 const {ALPHABET} = require('../constants/alphabet');
+const {isUpperCase} = require('./isUppercase');
 
 const encode = function (defaultText, shift) {
   let out = '';
@@ -9,7 +10,11 @@ const encode = function (defaultText, shift) {
         if (defTextIndex + shift >= ALPHABET.length) {
           indexOutput = defTextIndex + shift - ALPHABET.length;
         }
-        out += ALPHABET[indexOutput]
+        if (isUpperCase(defaultText[i])) {
+          out += ALPHABET[indexOutput].toUpperCase()
+        } else {
+          out += ALPHABET[indexOutput]
+        }
     } else {
       out += defaultText[i]
     }

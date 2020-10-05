@@ -1,6 +1,5 @@
 const {readInput} = require('./readInput');
 const {actionParser} = require('./actionParser');
-const read = require('read');
 
 const argvUsage = function (argv) {
   if (argv['i'] || argv['input']) {
@@ -9,16 +8,17 @@ const argvUsage = function (argv) {
     readInput(argv['i'] || argv['input'], successCallBack);
   } else {
     // default input from console
-    read({ prompt : 'Text: ' }, function (err, text) {
+
+    read({ prompt : 'Text: ' }, async function (err, text) {
       if (text) {
         // call action
-        actionParser(argv, text);
+        await actionParser(argv, text);
       }
       if (err) {
         console.error(err);
-        process.exit(0);
+        process.exit(1);
       }
-    })
+    });
   }
 };
 

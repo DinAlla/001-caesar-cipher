@@ -7,7 +7,7 @@ const readInput = function (filePath, successCallback) {
       successCallback(data);
     } else {
       parseSystemErrors(err.code);
-      process.exit(0);
+      process.exit(1);
     }
   });
 };

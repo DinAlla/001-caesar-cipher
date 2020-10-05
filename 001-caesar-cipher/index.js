@@ -10,7 +10,7 @@ const errors = argvParser(argv);
 
 if (errors.length) {
   errors.forEach(error => console.error(error));
-  process.exit(0);
+  process.exit(1);
 } else {
   argvUsage(argv)
 }

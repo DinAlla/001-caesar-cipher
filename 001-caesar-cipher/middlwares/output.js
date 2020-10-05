@@ -8,8 +8,9 @@ const output = (argv, outputText) => {
         //file exists
         fs.appendFile(path, outputText, function(error){
 
-          if(error) throw error; // если возникла ошибка
-          console.log("Асинхронная запись файла завершена. Содержимое файла:");
+          if(error) throw error;
+          console.log("\n" +
+              "Asynchronous file writing completed. File contents:");
           let data = fs.readFileSync(path, "utf8");
           console.log(data);
         });
@@ -20,8 +21,9 @@ const output = (argv, outputText) => {
         });
         fs.appendFile(path, outputText, function(error){
 
-          if(error) throw error; // если возникла ошибка
-          console.log("Асинхронная запись файла завершена. Содержимое файла:");
+          if(error) throw error;
+          console.log("\n" +
+              "Asynchronous file writing completed. File contents:");
           let data = fs.readFileSync(path, "utf8");
           console.log(data);
         });

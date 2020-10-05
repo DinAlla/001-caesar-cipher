@@ -3,6 +3,8 @@ const {actionParser} = require('./actionParser');
 const { pipeline } = require('stream');
 const transform_stream = require('./transformer');
 
+const fs = require('fs');
+
 const argvUsage = function (argv) {
   if (argv['i'] || argv['input']) {
     // call reader input file
@@ -13,7 +15,7 @@ const argvUsage = function (argv) {
     pipeline(
       process.stdin,
       new transform_stream(argv),
-      process.stdout,
+      argv['o'] || argv['output'] ? fs.createWriteStream(argv['o'] || argv['output'], { flags: 'a' }) : process.stdout,
       err => {
         if(err) {
           console.log("Pipeline failed: ");

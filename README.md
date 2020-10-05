@@ -15,6 +15,6 @@ $ node index --action encode --shift 11 --input first-file.txt --output second-f
 
 $ node index -a encode -s 11 -i first-file.txt -o second-file.txt<br/>
 
-$ node index -a encode --shift 52 -o "./output.txt"<br/>
+$ node index -a encode --shift 12 -o "./output.txt"<br/>
 
-$ node index -a decode -s 52<br/>
+$ node index -a decode -s 12<br/>

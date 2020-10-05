@@ -21,7 +21,10 @@ class FilterBlastOutput extends Transform {
       // call decode
       decodedText = decode(row, (this.argv['s'] || this.argv['shift']));
     }
-    callback(null, `${this.argv['action'] || this.argv['a']}d text: ${decodedText || encodedText} Enter another text to ${this.argv['action'] || this.argv['a']} or stop process with CTRL + c\n`);
+    callback(null,
+        this.argv['o'] || this.argv['output']
+          ? decodedText || encodedText
+          :`${this.argv['action'] || this.argv['a']}d text: ${decodedText || encodedText} Enter another text to ${this.argv['action'] || this.argv['a']} or stop process with CTRL + c\n`);
   }
 }
 

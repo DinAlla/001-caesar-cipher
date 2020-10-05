@@ -17,8 +17,3 @@ $ node index -a encode -s 11 -i first-file.txt -o second-file.txt<br/>
 $ node index -a encode --shift 52 -o "./output.txt"<br/>
 
 $ node index -a decode -s 52<br/>
-
-p.s. <br/>
-NOT IMPLEMENTED:<BR/>
-
-if the text is entered from the console, then the program should not terminate after encrypting / decrypting the entered text, i.e. it should be possible to enter more text

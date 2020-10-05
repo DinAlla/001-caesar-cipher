@@ -1,5 +1,7 @@
 const {readInput} = require('./readInput');
 const {actionParser} = require('./actionParser');
+const { pipeline } = require('stream');
+const transform_stream = require('./transformer');
 
 const argvUsage = function (argv) {
   if (argv['i'] || argv['input']) {
@@ -8,17 +10,18 @@ const argvUsage = function (argv) {
     readInput(argv['i'] || argv['input'], successCallBack);
   } else {
     // default input from console
-
-    read({ prompt : 'Text: ' }, async function (err, text) {
-      if (text) {
-        // call action
-        await actionParser(argv, text);
+    pipeline(
+      process.stdin,
+      new transform_stream(argv),
+      process.stdout,
+      err => {
+        if(err) {
+          console.log("Pipeline failed: ");
+        } else {
+          console.log('Pipeline succeeded.')
+        }
       }
-      if (err) {
-        console.error(err);
-        process.exit(1);
-      }
-    });
+    )
   }
 };
 
